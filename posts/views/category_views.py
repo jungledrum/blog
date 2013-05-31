@@ -17,3 +17,10 @@ def index(req):
 def show(req, name):
     posts = db.posts.find({'category': name})
     return render(req, 'categories/show.html', {'posts': posts})
+
+
+def create(req):
+    name = req.POST['name']
+    category = {'name': name}
+    db.categories.insert(category)
+    return redirect(reverse('posts.views.category_views.index'))

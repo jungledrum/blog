@@ -23,7 +23,11 @@ urlpatterns = patterns('',
     url(r'^posts/(?P<id>\w+)/destroy', 'posts.views.post_views.destroy'),
 
     url(r'^categories/$', 'posts.views.category_views.index'),
+    url(r'^categories/create$', 'posts.views.category_views.create'),
     url(r'^categories/(?P<name>\w+)/$', 'posts.views.category_views.show'),
 
     url(r'^posts/(?P<post_id>\w+)/comments/create$', 'posts.views.comment_views.create'),
+
+    url(r'^admin/$', 'admin.views.new'),
+    url(r'^admin/login$', 'admin.views.login'),
 )

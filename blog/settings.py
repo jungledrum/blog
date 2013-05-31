@@ -125,6 +125,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'posts',
+    'admin',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -155,3 +156,7 @@ LOGGING = {
         },
     }
 }
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
+
+VISITOR = 1

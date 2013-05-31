@@ -10,6 +10,8 @@ db = MongoClient().blog
 
 
 def index(req):
+    print '='*20
+    print VISITOR
     posts = db.posts.find().sort('_id', -1)
     context = Context({'posts': posts})
     return render(req, 'posts/index.html', context)

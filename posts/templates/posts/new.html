@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+<form action="{% url 'posts.views.post_views.create' %}" method="post">
+  {% csrf_token %}
+  <label>title:</label>
+  <input type="text" name="title">
+  <br>
+  <label>Category</label>
+  <select>
+    {% for category in categories %}
+    <option>{{ category.name }}</option>
+    {% endfor %}
+  </select>
+  <label>content:</label>
+  <textarea name="content" cols="20" rows="10"></textarea>
+  <br>
+  <input type="submit">
+</form>
+{% endblock %}

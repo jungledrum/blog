@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+{% load post_filter %}
+
+
+{% block main %}
+<h1>{{ post.title }}</h1>
+
+<div class="post-content">{{ post.content|safe }}</div>
+
+<div>
+    <a href="{% url 'posts.views.post_views.index' %}">back</a>
+    <a href="{% url 'posts.views.post_views.edit' post|mongo_id %}">edit</a>
+</div>
+
+<div>
+    <div>
+        {% for comment in comments %}
+        <div>
+            {{ comment.content }}
+        </div>
+        {% endfor %}
+    </div>
+    <form action="{% url 'posts.views.comment_views.create' post|mongo_id %}" method="post">
+        {% csrf_token %}
+        <label>Your Name</label>
+        <input type="text" name="name">
+        <br>
+        <label>Content</label>
+        <textarea name="content"></textarea>
+        <br>
+        <input type="submit">
+    </form> 
+</div>
+{% endblock %}

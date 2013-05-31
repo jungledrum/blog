@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% load post_filter %}
+
+{% block main %}
+<form action="{% url 'posts.views.post_views.update' post|mongo_id %}" method="post">
+  {% csrf_token %}
+  <label>title:</label>
+  <input type="text" name="title" value="{{ post.title }}">
+  <br>
+  <label>Category</label>
+  <select name="category">
+    {% for category in categories %}
+    <option value="{{ category.name }}">{{ category.name }}</option>
+    {% endfor %}
+  </select>
+  <label>content:</label>
+  <textarea name="content" cols="20" rows="10">{{ post.content }}</textarea>
+  <br>
+  <input type="submit">
+</form>
+{% endblock %}

@@ -1,0 +1,8 @@
+<div class="right-item">
+  <div class="right-item-header">Category</div>
+  <ul>
+    {% for category in categories %}
+    <li><a href="{% url 'posts.views.category_views.show' category.name %}">{{ category.name }}</a></li>
+    {% endfor %}
+  </ul>
+</div>

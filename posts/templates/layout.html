@@ -1,0 +1,45 @@
+{% load staticfiles %}
+{% load post_filter %}
+{% load my_tags %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
+    <link href="{% static 'css/main.css' %}" rel="stylesheet" media="screen">
+  </head>
+  <body>
+    <div class="header"></div>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <ul class="nav">
+          <li class="active"><a href="/">Home</a></li>
+          <li><a href="{% url 'posts.views.category_views.index' %}">Category</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="{% url 'posts.views.post_views.new' %}">New</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="body row-fluid">
+      <div class="left span8">
+        {% block main %}
+        {% endblock %}
+      </div>
+      <div class="right span4">
+        {% show_category %}
+        <div class="right-item">
+          <div class="right-item-header">Comments</div>
+          <ul>
+            <li>..</li>
+          </ul>
+        </div>
+      </div>
+    </div>    
+    <div class="footer"></div>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  </body>
+</html>

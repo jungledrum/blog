@@ -10,7 +10,11 @@
   <label>Category</label>
   <select name="category">
     {% for category in categories %}
+    {% if category.name == post.category %}
+    <option value="{{ category.name }}" selected>{{ category.name }}</option>
+    {% else %}
     <option value="{{ category.name }}">{{ category.name }}</option>
+    {% endif %}
     {% endfor %}
   </select>
   <label>content:</label>

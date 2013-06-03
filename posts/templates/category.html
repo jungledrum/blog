@@ -1,9 +1,22 @@
+{% load post_filter %}
+
 <div class="right-item">
   <div class="right-item-header">Category</div>
-  <ul>
+  <ul class="category">
     {% for category in categories %}
-    <li><a href="{% url 'posts.views.category_views.show' category.name %}">{{ category.name }}</a></li>
+    <li>
+      <a href="{% url 'posts.views.category_views.show' category.name %}">
+        {{ category.name }}
+      </a> 
+      {% if request.session.username == 'bo' %}
+      <a href="{% url 'posts.views.category_views.destroy' category|mongo_id %}">
+        <i class="icon-remove pull-right"></i>
+      </a>
+      {% endif %}
+    </li>
     {% endfor %}
   </ul>
+  {% if request.session.username == 'bo' %}
   <a href="#myModal" role="button" class="btn" data-toggle="modal">New Category</a>
+  {% endif %}
 </div>

@@ -21,4 +21,5 @@ def login(req):
         return redirect(reverse('admin.views.new'))
 
 def logout(req):
-    pass
+    del req.session['username']
+    return redirect(reverse('posts.views.post_views.index'))

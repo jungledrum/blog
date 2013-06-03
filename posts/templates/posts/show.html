@@ -3,20 +3,38 @@
 
 
 {% block main %}
-<h1>{{ post.title }}</h1>
+<h3>{{ post.title }}</h3>
 
-<div class="post-content">{{ post.content|safe }}</div>
+<div class="post-content">{{ post.content|editor|safe }}</div>
 
-<div>
-    <a href="{% url 'posts.views.post_views.index' %}">back</a>
-    <a href="{% url 'posts.views.post_views.edit' post|mongo_id %}">edit</a>
+<div class="post-footer">
+  <div class="pull-right">
+    <a href="{% url 'posts.views.post_views.index' %}">
+      <i class="icon-arrow-left"></i>
+      back
+    </a>
+    {% if request.session.username == 'bo' %}
+    <a href="{% url 'posts.views.post_views.edit' post|mongo_id %}">
+      <i class="icon-edit"></i>
+      edit
+    </a>
+    {% endif %}
+  </div>
+  <div class="clearfix"></div>
 </div>
 
 <div>
-    <div>
+    <div class="comment">
+        <div class="comment-header"><h3>Comments</h3></div>
         {% for comment in comments %}
-        <div>
-            {{ comment.content }}
+        <div class="comment-item">
+            <div class="comment-name">{{ comment.name }}
+              {% if request.session.username == 'bo' %}
+              <a href="{% url 'posts.views.comment_views.destroy' post|mongo_id comment|mongo_id %}"><i class="icon-remove pull-right"></i>
+              </a>
+              {% endif %}
+            </div>
+            <div class="comment-content">{{ comment.content|editor|safe }}</div>
         </div>
         {% endfor %}
     </div>

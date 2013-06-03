@@ -7,13 +7,13 @@
   <input type="text" name="title">
   <br>
   <label>Category</label>
-  <select>
+  <select name="category">
     {% for category in categories %}
     <option>{{ category.name }}</option>
     {% endfor %}
   </select>
   <label>content:</label>
-  <textarea name="content" cols="20" rows="10"></textarea>
+  <textarea name="content" class="span10" rows="10"></textarea>
   <br>
   <input type="submit">
 </form>

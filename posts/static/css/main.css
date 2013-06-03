@@ -1,7 +1,11 @@
 .header {
   width: 100%;
-  height: 100px;
-  background-color: #7f8c8d;
+  padding: 20px 0;
+  background-color: #34495e;
+  color: #ecf0f1;
+}
+.header h4{
+  padding-left: 30px;
 }
 
 .body {
@@ -33,10 +37,11 @@
 .footer {
   width: 100%;
   height: 30px;
-  background-color: #c2c2c2;
-  position: fixed;
-  bottom: 0;
-  z-index: -1;
+  background-color: #34495e;
+  /*position: fixed;*/
+  /*bottom: 0;*/
+  /*z-index: -1;*/
+  /*opacity: .5;*/
 }
 
 .item {
@@ -49,11 +54,66 @@
 }
 
 .item .content {
-  min-height: 200px;
+  /*min-height: 200px;*/
+  height: 200px;
+  overflow: hidden;
 }
 
 .post-content {
   min-height: 300px;
 }
+.post-footer{
+  margin: 20px 0;
+}
+
+.editor{
+  min-height: 100px;
+  border: 1px solid black;
+}
+
+.comment{
+  border-top: 3px solid black;
+}
+
+.comment-header{
+  /*padding: 10px;*/
+}
+
+.comment-item{
+  /*padding: 10px;*/
+  margin-bottom: 20px;
+}
+
+.comment-name{
+  padding: 5px 10px;
+  background-color: #7f8c8d;
+  color: white;
+  min-height: 20px;
+}
+
+.comment-content{
+  padding: 10px;
+  background-color: #ecf0f1;
+  min-height: 80px;
+}
+
+.category{
+  list-style: none;
+  margin: 0;
+}
+.category li{
+  padding: 5px 10px;
+  background-color: #ecf0f1;
+  margin: 5px 0;
+}
 
 
+.sidebar-comment{
+  list-style: none;
+  margin: 0;
+}
+.sidebar-comment li{
+  padding: 5px 10px;
+  background-color: #ecf0f1;
+  margin: 5px 0;
+}

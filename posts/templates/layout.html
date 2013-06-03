@@ -12,15 +12,24 @@
     <link href="{% static 'css/main.css' %}" rel="stylesheet" media="screen">
   </head>
   <body>
-    <div class="header"></div>
+    <div class="header">
+      <h4>It is the tears of the earth that keep here smiles in bloom.</h4>
+    </div>
     <div class="navbar">
       <div class="navbar-inner">
         <ul class="nav">
           <li class="active"><a href="/">Home</a></li>
-          <li><a href="{% url 'posts.views.category_views.index' %}">Category</a></li>
+          <!-- <li><a href="{% url 'posts.views.category_views.index' %}">Category</a></li> -->
           <li><a href="#">About</a></li>
+          {% if request.session.username == 'bo' %}
           <li><a href="{% url 'posts.views.post_views.new' %}">New</a></li>
+          {% endif %}
           <li><a href="{% url 'admin.views.new' %}">Admin</a></li>
+          {% if request.session.username == 'bo' %}
+          <li>
+            <a href="{% url 'admin.views.logout' %}">Logout</a>
+          </li>
+          {% endif %}
         </ul>
       </div>
     </div>
@@ -31,12 +40,7 @@
       </div>
       <div class="right span4">
         {% show_category %}
-        <div class="right-item">
-          <div class="right-item-header">Comments</div>
-          <ul>
-            <li>..</li>
-          </ul>
-        </div>
+        {% show_comments %}
       </div>
     </div>    
     <div class="footer"></div>

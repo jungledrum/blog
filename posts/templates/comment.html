@@ -1,0 +1,14 @@
+{% load post_filter %}
+
+<div class="right-item">
+  <div class="right-item-header">Comments</div>
+  <ul class="sidebar-comment">
+    {% for comment in comments %}
+    <li>{{ comment.content|editor|safe }}
+      <br>
+      <span style="color:#27ae60">{{ comment.name }}</span> on 
+      <a href="{% url 'posts.views.post_views.show' comment.post_id %}">{{ comment.post_title }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>

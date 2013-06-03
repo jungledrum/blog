@@ -1,8 +1,8 @@
 {% extends 'layout.html' %}
-
-{% block main %}
 {% load post_filter %}
 
+
+{% block main %}
 
 {% for post in posts %}
 <div class="item">
@@ -10,10 +10,12 @@
     <h3><a href="{% url 'posts.views.post_views.show' post|mongo_id %}">{{ post.title }}</a></h3>
   </div>
   <div class="content">
-    {{ post.content }}
+    {{ post.content|editor|safe }}
   </div>
   <div class="op">
+    {% if request.session.username == 'bo' %}
     <a href="{% url 'posts.views.post_views.destroy' post|mongo_id %}">del</a>
+    {% endif %}
   </div>  
 </div>
 {% endfor %}

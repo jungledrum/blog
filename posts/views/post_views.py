@@ -4,14 +4,13 @@ from django.core.urlresolvers import reverse
 from django.template import Context
 from bson.objectid import ObjectId
 from pymongo import MongoClient
+from posts.utils import login_required
 
 
 db = MongoClient().blog
 
 
 def index(req):
-    print '='*20
-    print VISITOR
     posts = db.posts.find().sort('_id', -1)
     context = Context({'posts': posts})
     return render(req, 'posts/index.html', context)
@@ -24,11 +23,13 @@ def show(req, id):
     return render(req, 'posts/show.html', context)
 
 
+@login_required
 def new(req):
     categories = db.categories.find()
     return render(req, 'posts/new.html', {'categories': categories})
 
 
+@login_required
 def create(req):
     title = req.POST['title']
     content = req.POST['content']
@@ -38,6 +39,7 @@ def create(req):
     return redirect(reverse('posts.views.post_views.index'))
 
 
+@login_required
 def edit(req, id):
     post = db.posts.find_one({'_id': ObjectId(id)})
     categories = db.categories.find()
@@ -45,6 +47,7 @@ def edit(req, id):
     return render(req, 'posts/edit.html', context)
 
 
+@login_required
 def update(req, id):
     title = req.POST['title']
     content = req.POST['content']
@@ -54,6 +57,7 @@ def update(req, id):
     return redirect(reverse('posts.views.post_views.show', args=(id,)))
 
 
+@login_required
 def destroy(req, id):
     db.posts.remove({'_id': ObjectId(id)})
     return redirect(reverse('posts.views.post_views.index'))
